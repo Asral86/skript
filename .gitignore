@@ -171,7 +171,7 @@ App_Data/*.ldf
 #############
 
 # Synctoy
-.dat
+*.dat
 
 # Windows image file caches
 Thumbs.db
