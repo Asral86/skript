@@ -1,4 +1,4 @@
-// ==UserScript==
+﻿// ==UserScript==
 // @name        Filmtipset
 // @description Förbättringar för Filmtipset
 // @include     http://www.filmtipset.se/*
