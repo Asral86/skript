@@ -1,7 +1,7 @@
 ﻿// ==UserScript==
 // @name        Angry Metal Guy
 // @include     http://www.angrymetalguy.com/*
-// @version     1.1.1
+// @version     1.1.2
 // @grant       none
 // ==/UserScript==
 
@@ -14,8 +14,10 @@ function createElement(type, attributes) { // Från http://wiki.greasespot.net/C
 // Sharing is caring
 var pappa = document.querySelector('div.sharedaddy');
 var sharebar = document.getElementById('sharebar');
+var flattr = document.querySelector('.wp-flattr-button');
 pappa.parentNode.removeChild(pappa);
 sharebar.parentNode.removeChild(sharebar);
+flattr.parentNode.removeChild(flattr);
 
 // CSS för fotnoter
 var stajl = createElement('style', { type: 'text/css' });
