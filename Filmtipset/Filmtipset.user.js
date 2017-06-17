@@ -2,7 +2,7 @@
 // @name        Filmtipset
 // @description Förbättringar för Filmtipset
 // @include     http://www.filmtipset.se/*
-// @version     3.5
+// @version     3.6
 // @grant       none
 // ==/UserScript==
 
@@ -13,6 +13,14 @@ function createElement(type, attributes) { // Från http://wiki.greasespot.net/C
 }
 
 var url = document.URL;
+if (document.getElementById('admin_links') != undefined) {
+	var admeny = document.querySelector('#admin_links .admin_canvas > table[border="0"]');
+	var kolumn = document.querySelector('#contentAd > img.ad-banner');
+	kolumn.parentNode.insertBefore(admeny, kolumn.previousSibling);
+	var rest = document.querySelector('#contentWrapper + div[style]');
+	rest.parentNode.removeChild(rest);
+	document.getElementById('pageWrapper').style.paddingRight = "0px"; // centrera
+}
 
 if (url.includes("percentage_") == true) { // Fixa fler-länken på statistiksidor (procent)
 	var fler = document.querySelector('a[href*="next=yes"]');
