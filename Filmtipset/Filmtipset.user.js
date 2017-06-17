@@ -2,7 +2,7 @@
 // @name        Filmtipset
 // @description Förbättringar för Filmtipset
 // @include     http://www.filmtipset.se/*
-// @version     3.6.2
+// @version     3.6.3
 // @grant       none
 // ==/UserScript==
 
@@ -17,9 +17,20 @@ var url = document.URL;
 if (document.getElementById('admin_links') !== undefined) { // Flytta in adminmenyn
 	document.getElementById('pageWrapper').style.paddingRight = "0px"; // centrera*/
 	var admeny = document.querySelector('#admin_links .admin_canvas > table[border="0"]');
-	var kolumn = document.querySelector('#contentAd');
-	kolumn.parentNode.replaceChild(admeny, kolumn);
-	admeny.id = "contentAd";
+	if (document.getElementById('contentAd') !== undefined) {
+		var kolumn = document.querySelector('#contentAd');
+		kolumn.parentNode.replaceChild(admeny, kolumn);
+		admeny.id = "contentAd";
+	}
+	else {
+		var kolumn = document.querySelector('#supporter_right');
+		var kolumndiv = createElement('div', { style: 'float: right; width: 240px' });
+		var addiv = createElement('div');
+		kolumndiv.appendChild(addiv);
+		addiv.appendChild(admeny);
+		kolumn.parentNode.insertBefore(kolumndiv, kolumn.previousSibling);
+		kolumndiv.appendChild(kolumn);
+	}
 	var rest = document.querySelector('#contentWrapper + div[style]');
 	rest.parentNode.removeChild(rest);
 }
