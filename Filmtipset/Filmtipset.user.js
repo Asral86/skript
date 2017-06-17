@@ -13,10 +13,12 @@ function createElement(type, attributes) { // Från http://wiki.greasespot.net/C
 }
 
 var url = document.URL;
-if (document.getElementById('admin_links') != undefined) {
+
+if (document.getElementById('admin_links') != undefined) { // Flytta in adminmenyn
 	var admeny = document.querySelector('#admin_links .admin_canvas > table[border="0"]');
 	var kolumn = document.querySelector('#contentAd');
 	kolumn.parentNode.replaceChild(admeny, kolumn);
+	admeny.id = "contentAd";
 	var rest = document.querySelector('#contentWrapper + div[style]');
 	rest.parentNode.removeChild(rest);
 	document.getElementById('pageWrapper').style.paddingRight = "0px"; // centrera*/
