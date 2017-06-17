@@ -2,7 +2,7 @@
 // @name        Filmtipset
 // @description Förbättringar för Filmtipset
 // @include     http://www.filmtipset.se/*
-// @version     3.6.1
+// @version     3.6.2
 // @grant       none
 // ==/UserScript==
 
@@ -14,32 +14,32 @@ function createElement(type, attributes) { // Från http://wiki.greasespot.net/C
 
 var url = document.URL;
 
-if (document.getElementById('admin_links') != undefined) { // Flytta in adminmenyn
+if (document.getElementById('admin_links') !== undefined) { // Flytta in adminmenyn
+	document.getElementById('pageWrapper').style.paddingRight = "0px"; // centrera*/
 	var admeny = document.querySelector('#admin_links .admin_canvas > table[border="0"]');
 	var kolumn = document.querySelector('#contentAd');
 	kolumn.parentNode.replaceChild(admeny, kolumn);
 	admeny.id = "contentAd";
 	var rest = document.querySelector('#contentWrapper + div[style]');
 	rest.parentNode.removeChild(rest);
-	document.getElementById('pageWrapper').style.paddingRight = "0px"; // centrera*/
 }
 
-if (url.includes("percentage_") == true) { // Fixa fler-länken på statistiksidor (procent)
+if (url.includes("percentage_") === true) { // Fixa fler-länken på statistiksidor (procent)
 	var fler = document.querySelector('a[href*="next=yes"]');
 	fler.setAttribute('href', fler.getAttribute('href').replace('count_', 'percentage_'));
 }
-else if (url.includes("totalt_") == true) { // Fixa fler-länken på statistiksidor (totalt)
+else if (url.includes("totalt_") === true) { // Fixa fler-länken på statistiksidor (totalt)
 	var fler = document.querySelector('a[href*="next=yes"]');
 	fler.setAttribute('href', fler.getAttribute('href').replace('count_', 'totalt_'));
 }
-else if (url.includes("yourpage.cgi") == true) { // Procent under betygsstaplar på användarsidor
+else if (url.includes("yourpage.cgi") === true) { // Procent under betygsstaplar på användarsidor
 	var stapel1 = document.getElementById('gradeStack1'); var ett = stapel1.getAttribute('title')*1;
 	var stapel2 = document.getElementById('gradeStack2'); var tva = stapel2.getAttribute('title')*1;
 	var stapel3 = document.getElementById('gradeStack3'); var tre = stapel3.getAttribute('title')*1;
 	var stapel4 = document.getElementById('gradeStack4'); var fyr = stapel4.getAttribute('title')*1;
 	var stapel5 = document.getElementById('gradeStack5'); var fem = stapel5.getAttribute('title')*1;
 	var total = ett+tva+tre+fyr+fem;
-	stapel1.firstElementChild.textContent = Math.round(ett / total * 1000)/10+"%"; 
+	stapel1.firstElementChild.textContent = Math.round(ett / total * 1000)/10+"%";
 	stapel2.firstElementChild.textContent = Math.round(tva / total * 1000)/10+"%";
 	stapel3.firstElementChild.textContent = Math.round(tre / total * 1000)/10+"%";
 	stapel4.firstElementChild.textContent = Math.round(fyr / total * 1000)/10+"%";
@@ -50,7 +50,7 @@ else if (url.includes("yourpage.cgi") == true) { // Procent under betygsstaplar 
 	stapel4.firstElementChild.style.left = Math.round((41-stapel4.firstElementChild.offsetWidth)/2)+"px";
 	stapel5.firstElementChild.style.left = Math.round((41-stapel5.firstElementChild.offsetWidth)/2)+"px";
 }
-else if (url.includes("/person/") == true) { // Extra statistik på personsidor
+else if (url.includes("/person/") === true) { // Extra statistik på personsidor
 	// Samla ihop siffrorna...
 	var antal_filmer = document.querySelectorAll('div.other_grade').length;
 	var antal_5 = document.querySelectorAll('div.SetGradeSeen img[src$="grade_5_seen.png"]').length - document.querySelectorAll('div.SetGradeCalc img[src$="grade_5.png"]').length;
@@ -63,7 +63,7 @@ else if (url.includes("/person/") == true) { // Extra statistik på personsidor
 	var snitt = Math.round(((antal_5*5)+(antal_4*4)+(antal_3*3)+(antal_2*2)+(antal_1*1))/antal_betyg * 100)/100;
 	
 	document.querySelector('td.big_canvas table[style="width:382px"] tr:nth-of-type(3) td+td').textContent += " (" + andel + "%)";
-	if ( antal_betyg > 0 ) { document.querySelector('td.big_canvas table[style="width:382px"] tr:nth-of-type(3) td+td').textContent += ", snitt: "+snitt}
+	if ( antal_betyg > 0 ) { document.querySelector('td.big_canvas table[style="width:382px"] tr:nth-of-type(3) td+td').textContent += ", snitt: "+snitt; }
 	
 	// Vänners betyg...
 	if (document.querySelectorAll('div.other_grade_1').length != 0) {
@@ -81,7 +81,7 @@ else if (url.includes("/person/") == true) { // Extra statistik på personsidor
 		var v_harsett = createElement('tr');
 		var v_harsett_td1 = createElement('td', {style: 'font-weight: bold'}); v_harsett_td1.textContent = v_namn+" har sett: ";
 		var v_harsett_td2 = createElement('td'); v_harsett_td2.textContent = v_antal_betyg+" (" + v_andel + "%)";
-		if ( v_antal_betyg > 0 ) { v_harsett_td2.textContent += ", snitt: "+v_snitt}
+		if ( v_antal_betyg > 0 ) { v_harsett_td2.textContent += ", snitt: "+v_snitt; }
 		v_harsett.appendChild(v_harsett_td1); v_harsett.appendChild(v_harsett_td2); duharsett.parentNode.insertBefore(v_harsett, duharsett.nextSibling);
 	}
 	
@@ -95,7 +95,7 @@ else if (url.includes("/person/") == true) { // Extra statistik på personsidor
 		members[i].parentNode.appendChild(member_link);
 	}
 }
-else if (url.includes("update_movie.cgi") == true) { // Verifiering
+else if (url.includes("update_movie.cgi") === true) { // Verifiering
 	function update_sum() {
 		var actors_sum = actors.length*2;
 		for ( var i=0; i<actors.length; i++) { actors_sum += actors[i].value.length; }
@@ -110,22 +110,22 @@ else if (url.includes("update_movie.cgi") == true) { // Verifiering
 	
 	var actors = document.querySelectorAll('input[name^=actor]');
 	var newactors = document.querySelector('textarea[name=newactors]');
-	var actors_sum_p = createElement('p', {id: 'actors_sum', style: 'margin-bottom: 0;'}); 
+	var actors_sum_p = createElement('p', {id: 'actors_sum', style: 'margin-bottom: 0;'});
 	newactors.parentNode.insertBefore(actors_sum_p, newactors.nextSibling);
 	
 	update_sum();
-	newactors.onkeyup = function() { update_sum(); }
+	newactors.onkeyup = function() { update_sum(); };
 	/*
 	if (director.nextSibling.isElementContentWhitespace == true) { console.log("Finns inte i databasen!!!"); }
 	else {
-		//console.log(director.value + "! " + director.nextSibling.nodeValue); 
+		//console.log(director.value + "! " + director.nextSibling.nodeValue);
 		var dir = "http://nyheter24.se/filmtipset/search.cgi?search_value="+director.value+"&field=director&S%F6k=S%F6k"; dir = dir.replace(" ", "+");
 		alert(dir);
 		// Undersök http://dense13.com/blog/2009/05/03/converting-string-to-slug-javascript/ för direktlänkar istf sök...
 	}
 	*/
 }
-else if (url.includes("support_stats.cgi") == true) { // Personlig statistik
+else if (url.includes("support_stats.cgi") === true) { // Personlig statistik
 	var langfilmer = document.querySelector('div[style="width: 800px"] table[cellspacing="10"] tr:nth-child(1) td:nth-child(2)').textContent.replace('Långfilmer (>60 min): ', '');
 	var kortfilmer = document.querySelector('div[style="width: 800px"] table[cellspacing="10"] tr:nth-child(2) td:nth-child(2)').textContent.replace('Kortfilmer (<60 min): ', '');
 	var betyg_totalt = langfilmer*1+kortfilmer*1;
