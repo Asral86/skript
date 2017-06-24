@@ -2,7 +2,7 @@
 // @name        Filmtipset
 // @description Förbättringar för Filmtipset
 // @include     http://www.filmtipset.se/*
-// @version     3.6.3
+// @version     3.6.4
 // @grant       none
 // ==/UserScript==
 
@@ -14,7 +14,7 @@ function createElement(type, attributes) { // Från http://wiki.greasespot.net/C
 
 var url = document.URL;
 
-if (document.getElementById('admin_links') !== undefined) { // Flytta in adminmenyn
+if (document.getElementById('admin_links') !== undefined && url.includes('admin/admin_activity.cgi') === false) { // Flytta in adminmenyn
 	document.getElementById('pageWrapper').style.paddingRight = "0px"; // centrera*/
 	var admeny = document.querySelector('#admin_links .admin_canvas > table[border="0"]');
 	if (document.getElementById('contentAd') !== undefined) {
