@@ -1,12 +1,13 @@
 ﻿// ==UserScript==
-// @name        Filmtipset
-// @description Förbättringar för Filmtipset
-// @include     http://www.filmtipset.se/*
-// @version     3.6.4
-// @grant       none
+// @name         Filmtipset
+// @description  Förbättringar för Filmtipset
+// @author       Lars Andersson
+// @version      3.6.4
+// @include      http://www.filmtipset.se/*
+// @grant        none
 // ==/UserScript==
 
-function createElement(type, attributes) { // Från http://wiki.greasespot.net/Create_DOM_Structure
+function createElement(type, attributes) {
 	var node = document.createElement(type);
 	for (var attr in attributes) if (attributes.hasOwnProperty(attr)) { node.setAttribute(attr, attributes[attr]); }
 	return node;

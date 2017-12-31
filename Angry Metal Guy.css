@@ -1,0 +1,26 @@
+﻿/* Fotnoter till Greasemonkey-skriptet! */
+sup.footnote {
+    position: relative;
+    display: inline-block;
+}
+
+sup.footnote .fn-tooltip {
+    visibility: hidden;
+    width: 250px;
+    padding: 8px;
+    border-radius: 6px;
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin: 0 0 5px -125px;
+    background: #000;
+    color: #fff;
+    text-align: left;
+    list-style-type: none;
+    font-size: 14px;
+    line-height: 1.4em;
+}
+
+sup.footnote:hover .fn-tooltip { visibility: visible; }
+.fn-tooltip span.footnotereverse { display: none; }
+.fn-tooltip a { color: lightblue; }

@@ -1,15 +1,15 @@
 ﻿// ==UserScript==
-// @name    		Filmsidor
-// @description    	Länka ihop Filmtipset, Imdb, Cinemageddon, Letterboxd
-// @author  		Lars Andersson
-// @version 		1.8.1
-// @include 		http://www.filmtipset.se/film/*
-// @include 		http://*.imdb.com/title/*
-// @include 		http://cinemageddon.net/details.php?*
-// @grant			none
+// @name         Filmsidor
+// @description  Länka ihop Filmtipset, Imdb, Cinemageddon, Letterboxd
+// @author       Lars Andersson
+// @version      1.8.1
+// @include      http://www.filmtipset.se/film/*
+// @include      http://*.imdb.com/title/*
+// @include      http://cinemageddon.net/details.php?*
+// @grant        none
 // ==/UserScript==
 
-function createElement(type, attributes) { // Från http://wiki.greasespot.net/Create_DOM_Structure
+function createElement(type, attributes) {
 	var node = document.createElement(type);
 	for (var attr in attributes) if (attributes.hasOwnProperty(attr)) { node.setAttribute(attr, attributes[attr]); }
 	return node;
@@ -62,5 +62,5 @@ for (var y = 0; y <= imgs.length; y++) {
 }
 
 else if (window.location.hostname == "letterboxd.com") {
-	// gör något!
+	// TODO: gör något!
 }

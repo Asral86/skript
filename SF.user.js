@@ -1,14 +1,13 @@
 ﻿// ==UserScript==
-// @name        	SF
-// @description    	Dölj kommande filmer i listan
-// @author  		Lars Andersson
-// @version			1.0
-// @include     	https://www.sf.se/
-// @version     	1
-// @grant       	none
+// @name         SF
+// @description  Dölj kommande filmer i listan
+// @author       Lars Andersson
+// @version      1.0
+// @include      https://www.sf.se/
+// @grant        none
 // ==/UserScript==
 
-function createElement(type, attributes) { // Från http://wiki.greasespot.net/Create_DOM_Structure
+function createElement(type, attributes) {
 	var node = document.createElement(type);
 	for (var attr in attributes) if (attributes.hasOwnProperty(attr)) { node.setAttribute(attr, attributes[attr]); }
 	return node;
