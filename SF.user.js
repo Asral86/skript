@@ -7,6 +7,7 @@
 // @grant        none
 // ==/UserScript==
 
+/*
 function createElement(type, attributes) {
 	var node = document.createElement(type);
 	for (var attr in attributes) if (attributes.hasOwnProperty(attr)) { node.setAttribute(attr, attributes[attr]); }
@@ -25,3 +26,4 @@ var hidebutton = createElement('a', {style: 'position: fixed; bottom: 0; left: 0
 hidebutton.textContent = "Dölj kommande filmer";
 hidebutton.addEventListener("click", hidefilm, true);
 document.body.appendChild(hidebutton);
+*/
