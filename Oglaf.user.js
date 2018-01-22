@@ -2,8 +2,9 @@
 // @name         Oglaf
 // @description  Alt-text i title-text
 // @author       Lars Andersson
-// @version      1.0
+// @version      1.0.1
 // @include      http://oglaf.com/*
+// @include      https://oglaf.com/*
 // @grant        none
 // ==/UserScript==
 
