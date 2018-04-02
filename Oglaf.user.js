@@ -1,13 +1,16 @@
 ﻿// ==UserScript==
 // @name         Oglaf
-// @description  Alt-text i title-text
+// @description  Title och alt under bilden
 // @author       Lars Andersson
-// @version      1.0.2
+// @version      1.1
 // @include      https://www.oglaf.com/*
 // @grant        none
 // ==/UserScript==
 
-var alt = document.getElementById("strip").getAttribute("alt");
-var title = document.getElementById("strip").getAttribute("title");
-title = title + '\nAlt: ' + alt;
-document.getElementById("strip").setAttribute("title", title);
+var comic = document.getElementById("strip");
+var alt = comic.getAttribute("alt");
+var title = comic.getAttribute("title");
+var thep = document.createElement('p');
+thep.textContent = title+"\nAlt: "+alt;
+thep.style = "background-color: #ccc;margin: 0;padding: 8px 16px; white-space: pre-line;";
+document.querySelector('div.content').insertAdjacentElement('afterend', thep);
