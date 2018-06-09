@@ -2,9 +2,10 @@
 // @name         Filmsidor
 // @description  Länka ihop Filmtipset, Imdb, Cinemageddon, Letterboxd
 // @author       Lars Andersson
-// @version      1.8.1
+// @version      1.8.2
 // @include      http://www.filmtipset.se/film/*
 // @include      http://*.imdb.com/title/*
+// @include      https://*.imdb.com/title/*
 // @include      http://cinemageddon.net/details.php?*
 // @grant        none
 // ==/UserScript==
