@@ -2,7 +2,8 @@
 // @name         Angry Metal Guy
 // @description  Gör fotnoter till tooltips
 // @author       Lars Andersson
-// @version      1.2
+// @version      1.2.1
+// @include      https://www.angrymetalguy.com/*
 // @include      http://www.angrymetalguy.com/*
 // @grant        none
 // ==/UserScript==
