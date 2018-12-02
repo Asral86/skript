@@ -2,9 +2,10 @@
 // @name         xkcd
 // @description  Title-text under bilden
 // @author       Lars Andersson
-// @version      1.0
+// @version      1.0.1
 // @include      https://xkcd.com/*
 // @include      https://xkcd.org/*
+// @include      https://www.xkcd.com/*
 // @grant        none
 // ==/UserScript==
 
