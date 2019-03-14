@@ -186,6 +186,8 @@ $RECYCLE.BIN/
 # Mac crap
 .DS_Store
 
+# Just ignore it
+*.ignore
 
 #############
 ## Python

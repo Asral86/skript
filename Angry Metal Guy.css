@@ -24,3 +24,6 @@ sup.footnote .fn-tooltip {
 sup.footnote:hover .fn-tooltip { visibility: visible; }
 .fn-tooltip span.footnotereverse { display: none; }
 .fn-tooltip a { color: lightblue; }
+
+sup.footnote > a:before { content: "["; }
+sup.footnote > a:after { content: "]"; }
