@@ -2,7 +2,7 @@
 // @name         Filmsidor
 // @description  Länka ihop Filmtipset, Imdb, Cinemageddon, Letterboxd
 // @author       Lars Andersson
-// @version      1.9
+// @version      1.10
 // @include      http://www.filmtipset.se/film/*
 // @include      http://*.imdb.com/title/*
 // @include      https://*.imdb.com/title/*
@@ -69,6 +69,11 @@ else if (window.location.hostname == "cinemageddon.net") {
 else if (url.includes('https://letterboxd.com/film/') == true) {
 	var imdb = document.querySelector('.col-main > p.text-footer a.micro-button[data-track-action="IMDb"]').href.replace('http://www.imdb.com/title/', '').replace('/maindetails', '');
 	var flag = document.querySelector('.col-main > p.text-footer span.report-link');
-	var ftlink = createElement('a', {href: 'http://www.filmtipset.se/' + imdb, class: 'micro-button'}); ftlink.textContent = "Filmtipset";
+	var ftlink = createElement('a', {href: 'http://www.filmtipset.se/' + imdb, class: 'micro-button', rel: 'noopener noreferrer'}); ftlink.textContent = "FT";
+  var cglink = createElement('a', {href: 'http://cinemageddon.net/browse.php?search=' + imdb, class: 'micro-button', rel: 'noopener noreferrer'}); cglink.textContent = "CG";
+  var spejs = document.createTextNode(" "); var spsp = document.createElement('span');
+  spsp.appendChild(spejs);
 	flag.insertAdjacentElement('beforebegin',ftlink);
+  flag.insertAdjacentElement('beforebegin',spsp);
+  flag.insertAdjacentElement('beforebegin',cglink);
 }
