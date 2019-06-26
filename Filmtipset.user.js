@@ -2,7 +2,7 @@
 // @name         Filmtipset
 // @description  Förbättringar för Filmtipset
 // @author       Lars Andersson
-// @version      3.6.4
+// @version      3.6.5
 // @include      http://www.filmtipset.se/*
 // @grant        none
 // ==/UserScript==
@@ -16,8 +16,9 @@ function createElement(type, attributes) {
 var url = document.URL;
 
 if (document.getElementById('admin_links') !== undefined && url.includes('admin/admin_activity.cgi') === false) { // Flytta in adminmenyn
-	document.getElementById('pageWrapper').style.paddingRight = "0px"; // centrera*/
+	document.getElementById('pageWrapper').style.paddingRight = "0px"; // centrera
 	var admeny = document.querySelector('#admin_links .admin_canvas > table[border="0"]');
+	admeny.style.paddingLeft = "25px";
 	if (document.getElementById('contentAd') !== undefined) {
 		var kolumn = document.querySelector('#contentAd');
 		kolumn.parentNode.replaceChild(admeny, kolumn);
