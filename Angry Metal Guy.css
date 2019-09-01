@@ -1,4 +1,13 @@
-﻿/* Fotnoter till Greasemonkey-skriptet! */
+﻿/* Sharing is caring */
+#sharebar,
+.mainlogo-link + .icons {
+    display: none;
+}
+
+/* word-break för långa kommentarer i gamla länkar */
+.Comment__content___H2nSW { word-wrap: anywhere; }
+
+/* Fotnoter till Greasemonkey-skriptet! */
 sup.footnote {
     position: relative;
     display: inline-block;
@@ -6,9 +15,11 @@ sup.footnote {
 
 sup.footnote .fn-tooltip {
     visibility: hidden;
-    width: 250px;
+    width: 350px;
     padding: 8px;
     border-radius: 6px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 20px #ccc;
     position: absolute;
     bottom: 100%;
     left: 50%;

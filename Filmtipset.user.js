@@ -1,10 +1,11 @@
 ﻿// ==UserScript==
-// @name         Filmtipset
-// @description  Förbättringar för Filmtipset
-// @author       Lars Andersson
-// @version      3.6.5
-// @include      http://www.filmtipset.se/*
-// @grant        none
+// @name        	Filmtipset
+// @description 	Förbättringar för Filmtipset
+// @author      	Lars Andersson
+// @version     	3.6.6
+// @include     	http://www.filmtipset.se/*
+// @grant       	none
+// @run-at			document-idle
 // ==/UserScript==
 
 function createElement(type, attributes) {
@@ -15,10 +16,10 @@ function createElement(type, attributes) {
 
 var url = document.URL;
 
-if (document.getElementById('admin_links') !== undefined && url.includes('admin/admin_activity.cgi') === false) { // Flytta in adminmenyn
+/*if (document.getElementById('admin_links') !== undefined && url.includes('admin/admin_activity.cgi') === false) { // Flytta in adminmenyn
 	document.getElementById('pageWrapper').style.paddingRight = "0px"; // centrera
 	var admeny = document.querySelector('#admin_links .admin_canvas > table[border="0"]');
-	admeny.style.paddingLeft = "25px";
+  admeny.style.paddingLeft = "25px";
 	if (document.getElementById('contentAd') !== undefined) {
 		var kolumn = document.querySelector('#contentAd');
 		kolumn.parentNode.replaceChild(admeny, kolumn);
@@ -35,7 +36,7 @@ if (document.getElementById('admin_links') !== undefined && url.includes('admin/
 	}
 	var rest = document.querySelector('#contentWrapper + div[style]');
 	rest.parentNode.removeChild(rest);
-}
+}*/
 
 if (url.includes("percentage_") === true) { // Fixa fler-länken på statistiksidor (procent)
 	var fler = document.querySelector('a[href*="next=yes"]');
