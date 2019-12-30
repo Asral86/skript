@@ -10,8 +10,8 @@
 // ==/UserScript==
 
 if (document.body.classList.contains('single-post') === true) {
-  var datum = document.querySelector('.article-header .byline time'); console.log(datum);
-  var datte = new Date(datum.getAttribute('datetime')); console.log(datte);
+  var datum = document.querySelector('.article-header .byline time'); //console.log(datum);
+  var datte = new Date(datum.getAttribute('datetime')); //console.log(datte);
   var stajl = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
   datum.setAttribute('title', datum.textContent);
   datum.textContent = datte.toLocaleString('sv-SE', stajl); 
