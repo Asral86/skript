@@ -1,19 +1,13 @@
 ﻿// ==UserScript==
 // @name         Angry Metal Guy
-// @description  Gör fotnoter till tooltips
+// @description  Gör fotnoter till tooltips, och fixa prev/next
 // @author       Lars Andersson
-// @version      1.2.2
+// @version      1.3
 // @include      https://www.angrymetalguy.com/*
 // @include      http://www.angrymetalguy.com/*
 // @grant        none
 // @run-at       document-idle
 // ==/UserScript==
-
-function createElement(type, attributes) {
-	var node = document.createElement(type);
-	for (var attr in attributes) if (attributes.hasOwnProperty(attr)) { node.setAttribute(attr, attributes[attr]); }
-	return node;
-}
 
 // CSS för fotnoter ligger i Stylus/separat fil!
 
@@ -27,3 +21,8 @@ for (var i=0; i<=fotnoter.length-1; i++) {
 	tooltip.setAttribute('class', 'fn-tooltip');
 	fotnoter[i].parentNode.appendChild(tooltip);
 }
+
+// Kopiera previous/next-nav till toppen
+var pn = document.querySelector('div.entry-next-prev-desktop').cloneNode(true);
+var mp = document.querySelector('.site-main > article.post');
+mp.insertAdjacentElement('afterbegin',pn);
