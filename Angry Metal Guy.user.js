@@ -2,7 +2,7 @@
 // @name         Angry Metal Guy
 // @description  Gör fotnoter till tooltips, och fixa prev/next
 // @author       Lars Andersson
-// @version      1.3
+// @version      1.3.1
 // @include      https://www.angrymetalguy.com/*
 // @include      http://www.angrymetalguy.com/*
 // @grant        none
@@ -23,6 +23,9 @@ for (var i=0; i<=fotnoter.length-1; i++) {
 }
 
 // Kopiera previous/next-nav till toppen
-var pn = document.querySelector('div.entry-next-prev-desktop').cloneNode(true);
-var mp = document.querySelector('.site-main > article.post');
-mp.insertAdjacentElement('afterbegin',pn);
+if (!document.getElementById('navklon')) {
+	var pn = document.querySelector('div.entry-next-prev-desktop').cloneNode(true);
+	pn.setAttribute('id','navklon');
+	var mp = document.querySelector('.site-main > article.post');
+	mp.insertAdjacentElement('afterbegin',pn);
+}
