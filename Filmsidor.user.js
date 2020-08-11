@@ -2,7 +2,7 @@
 // @name         Filmsidor
 // @description  Länka ihop Filmtipset, Imdb, Cinemageddon, Letterboxd
 // @author       Lars Andersson
-// @version      1.11
+// @version      1.12
 // @include      *://www.filmtipset.se/film/*
 // @include      *://*.imdb.com/title/*
 // @include      *://cinemageddon.net/details.php?*
@@ -59,12 +59,15 @@ else if (url.includes('cinemageddon.net') == true) {
   else { var imdb = document.querySelectorAll('#altlist_row + tr + tr a[href^="http://www.imdb.com/title/"]'); }
   if ( imdb[0].textContent != "" ) {
     for (var i=0; i<=imdb.length-1; i++) {
-      //var ft = createElement('a', {href: 'http://www.filmtipset.se/' + imdb[i].textContent, target: '_blank', rel: 'noopener noreferrer'});
-      var lb = createElement('a', {href: 'http://letterboxd.com/imdb/' + imdb[i].textContent, target: '_blank', rel: 'noopener noreferrer'});
-      //ft.textContent = ' (ft)';
-      lb.textContent = ' (lb)';
-      //imdb[i].parentNode.insertBefore(ft, imdb[i].nextSibling);
-      imdb[i].parentNode.insertBefore(lb, imdb[i].nextSibling);
+      if (imdb[i].classList.contains('lb') !== true) {
+				imdb[i].classList.add('lb');
+      	//var ft = createElement('a', {href: 'http://www.filmtipset.se/' + imdb[i].textContent, target: '_blank', rel: 'noopener noreferrer'});
+      	var lb = createElement('a', {href: 'http://letterboxd.com/imdb/' + imdb[i].textContent, target: '_blank', rel: 'noopener noreferrer'});
+      	//ft.textContent = ' (ft)';
+      	lb.textContent = ' (lb)';
+      	//imdb[i].parentNode.insertBefore(ft, imdb[i].nextSibling);
+      	imdb[i].parentNode.insertBefore(lb, imdb[i].nextSibling);
+      }
     }
   }
   // Auto-expandera bilder i beskrivningar
