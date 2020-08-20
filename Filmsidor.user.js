@@ -2,7 +2,7 @@
 // @name         Filmsidor
 // @description  Länka ihop Filmtipset, Imdb, Cinemageddon, Letterboxd
 // @author       Lars Andersson
-// @version      1.12
+// @version      1.2
 // @include      *://www.filmtipset.se/film/*
 // @include      *://*.imdb.com/title/*
 // @include      *://cinemageddon.net/details.php?*
@@ -50,6 +50,10 @@ else if (url.includes('imdb.com') == true) {
   sbdiv.appendChild(cglink); sbdiv.appendChild(enbr);
   sbdiv.appendChild(lblink);
   sidebar.insertBefore(sbdiv,sidebar.firstChild);
+	
+	// Döda zergnet-bajs
+	var bajs = document.querySelector('#sidebar > .mini-article > .ab_widget > .ab_zergnet');
+	bajs.parentNode.parentNode.remove();
 }
 
 else if (url.includes('cinemageddon.net') == true) {
