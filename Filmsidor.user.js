@@ -2,7 +2,7 @@
 // @name         Filmsidor
 // @description  Länka ihop Filmtipset, Imdb, Cinemageddon, Letterboxd
 // @author       Lars Andersson
-// @version      1.2.1
+// @version      1.2.2
 // @include      *://www.filmtipset.se/film/*
 // @include      *://*.imdb.com/title/*
 // @include      *://cinemageddon.net/details.php?*
@@ -58,9 +58,9 @@ else if (url.includes('imdb.com') == true) {
 
 else if (url.includes('cinemageddon.net') == true) {
   document.title = document.title.replace(' torrent details for ', ' ');
-  if (document.querySelector('#altlist_row + tr + tr td.rowhead').textContent == "Note" || document.querySelector('#altlist_row + tr + tr td.rowhead').textContent == "Trumpable") {
+  if (document.querySelector('#altlist_row + tr + tr + tr td.rowhead').textContent == "IMDB") {
     var imdb = document.querySelectorAll('#altlist_row + tr + tr + tr a[href^="http://www.imdb.com/title/"]'); }
-  else { var imdb = document.querySelectorAll('#altlist_row + tr + tr a[href^="http://www.imdb.com/title/"]'); }
+  else { var imdb = document.querySelectorAll('#altlist_row + tr + tr + tr + tr a[href^="http://www.imdb.com/title/"]'); }
   if ( imdb[0].textContent != "" ) {
     for (var i=0; i<=imdb.length-1; i++) {
       if (imdb[i].classList.contains('lb') !== true) {
