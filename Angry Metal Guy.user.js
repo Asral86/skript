@@ -1,7 +1,7 @@
 ﻿// ==UserScript==
 // @name         Angry Metal Guy
 // @description  Gör fotnoter till tooltips, och fixa prev/next
-// @version      1.5
+// @version      1.5.1
 // @author       Lars Andersson
 // @namespace    https://github.com/Asral86/skript
 // @match        *://www.angrymetalguy.com/*
@@ -53,6 +53,7 @@ sup.footnote .fn-tooltip { \
 	list-style-type: none; \
 	font-size: 14px; \
 	line-height: 1.4em; \
+	z-index: 9; \
 }';
 document.head.appendChild(stajl);
 
