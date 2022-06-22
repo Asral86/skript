@@ -2,7 +2,7 @@
 // @name         Filmsidor
 // @description  Länka ihop Filmtipset, Imdb, Cinemageddon, Letterboxd
 // @author       Lars Andersson
-// @version      1.2.2
+// @version      1.2.4
 // @include      *://www.filmtipset.se/film/*
 // @include      *://*.imdb.com/title/*
 // @include      *://cinemageddon.net/details.php?*
@@ -25,8 +25,9 @@ if (url.includes('www.filmtipset.se') == true) {
   if (imdbid.length > 9 && imdbid.includes('tt0') == true) { // Ta bort extra nollor i imdb-id
     for (var i=imdbid.length; i>9; i--) { imdbid = imdbid.replace('tt0', 'tt'); }
   }
-  var cglink = createElement('a', {href: 'http://cinemageddon.net/browse.php?search=' + imdbid, target: '_blank', rel: 'noopener noreferrer'}); cglink.textContent = "Cinemageddon";
-  var lblink = createElement('a', {href: 'http://letterboxd.com/imdb/' + imdbid, target: '_blank', rel: 'noopener noreferrer'}); lblink.textContent = "Letterboxd";
+  imdb.href = "https://www.imdb.com/title/" + imdbid;
+  var cglink = createElement('a', {href: 'https://cinemageddon.net/browse.php?search=' + imdbid, target: '_blank', rel: 'noopener noreferrer'}); cglink.textContent = "Cinemageddon";
+  var lblink = createElement('a', {href: 'https://letterboxd.com/imdb/' + imdbid, target: '_blank', rel: 'noopener noreferrer'}); lblink.textContent = "Letterboxd";
   var span1  = createElement('span', {class: 'postmeta hideMobile'});
   var span2  = createElement('span', {class: 'postmeta hideMobile'});
   var ikon1  = createElement('i', {class: 'fa fa-film'});
@@ -43,8 +44,8 @@ else if (url.includes('imdb.com') == true) {
   var sidebar = document.getElementById('sidebar');
   var imdbid = document.querySelector('meta[property="pageId"]').getAttribute("content");
   //var ftlink = createElement('a', {href: 'http://www.filmtipset.se/' + imdbid, target: '_blank', rel: 'noopener noreferrer'}); ftlink.textContent = 'Filmtipset';
-  var cglink = createElement('a', {href: 'http://cinemageddon.net/browse.php?search=' + imdbid, target: '_blank', rel: 'noopener noreferrer'}); cglink.textContent = 'Cinemageddon';
-  var lblink = createElement('a', {href: 'http://letterboxd.com/imdb/' + imdbid, target: '_blank', rel: 'noopener noreferrer'}); lblink.textContent = 'Letterboxd';
+  var cglink = createElement('a', {href: 'https://cinemageddon.net/browse.php?search=' + imdbid, target: '_blank', rel: 'noopener noreferrer'}); cglink.textContent = 'Cinemageddon';
+  var lblink = createElement('a', {href: 'https://letterboxd.com/imdb/' + imdbid, target: '_blank', rel: 'noopener noreferrer'}); lblink.textContent = 'Letterboxd';
   var sbdiv = createElement('div', {class: 'mini-article'}); /*var br1 = createElement('br');*/ var enbr = createElement('br');
   //sbdiv.appendChild(ftlink); sbdiv.appendChild(br1);
   sbdiv.appendChild(cglink); sbdiv.appendChild(enbr);
@@ -66,7 +67,7 @@ else if (url.includes('cinemageddon.net') == true) {
       if (imdb[i].classList.contains('lb') !== true) {
 				imdb[i].classList.add('lb');
       	//var ft = createElement('a', {href: 'http://www.filmtipset.se/' + imdb[i].textContent, target: '_blank', rel: 'noopener noreferrer'});
-      	var lb = createElement('a', {href: 'http://letterboxd.com/imdb/' + imdb[i].textContent, target: '_blank', rel: 'noopener noreferrer'});
+      	var lb = createElement('a', {href: 'https://letterboxd.com/imdb/' + imdb[i].textContent, target: '_blank', rel: 'noopener noreferrer'});
       	//ft.textContent = ' (ft)';
       	lb.textContent = ' (lb)';
       	//imdb[i].parentNode.insertBefore(ft, imdb[i].nextSibling);
@@ -85,7 +86,7 @@ else if (url.includes('https://letterboxd.com/film/') == true) {
   var imdb = document.querySelector('.col-main > p.text-footer a.micro-button[data-track-action="IMDb"]').href.replace('http://www.imdb.com/title/', '').replace('/maindetails', '');
   var flag = document.querySelector('.col-main > p.text-footer span.report-link');
   //var ftlink = createElement('a', {href: 'http://www.filmtipset.se/' + imdb, class: 'micro-button', rel: 'noopener noreferrer'}); ftlink.textContent = "FT";
-  var cglink = createElement('a', {href: 'http://cinemageddon.net/browse.php?search=' + imdb, class: 'micro-button', rel: 'noopener noreferrer'}); cglink.textContent = "CG";
+  var cglink = createElement('a', {href: 'https://cinemageddon.net/browse.php?search=' + imdb, class: 'micro-button', rel: 'noopener noreferrer'}); cglink.textContent = "CG";
   var spejs = document.createTextNode(" "); var spsp = document.createElement('span');
   spsp.appendChild(spejs);
   //flag.insertAdjacentElement('beforebegin',ftlink);
