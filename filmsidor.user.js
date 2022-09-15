@@ -2,7 +2,7 @@
 // @name         Filmsidor
 // @description  Länka ihop Filmtipset, Imdb, Cinemageddon, Letterboxd
 // @author       Lars Andersson
-// @version      1.2.4
+// @version      1.3
 // @include      *://www.filmtipset.se/film/*
 // @include      *://*.imdb.com/title/*
 // @include      *://cinemageddon.net/details.php?*
@@ -46,10 +46,12 @@ else if (url.includes('imdb.com') == true) {
   //var ftlink = createElement('a', {href: 'http://www.filmtipset.se/' + imdbid, target: '_blank', rel: 'noopener noreferrer'}); ftlink.textContent = 'Filmtipset';
   var cglink = createElement('a', {href: 'https://cinemageddon.net/browse.php?search=' + imdbid, target: '_blank', rel: 'noopener noreferrer'}); cglink.textContent = 'Cinemageddon';
   var lblink = createElement('a', {href: 'https://letterboxd.com/imdb/' + imdbid, target: '_blank', rel: 'noopener noreferrer'}); lblink.textContent = 'Letterboxd';
-  var sbdiv = createElement('div', {class: 'mini-article'}); /*var br1 = createElement('br');*/ var enbr = createElement('br');
+  var rblink = createElement('a', {href: 'http://rarbg.to/torrents.php?search=' + imdbid + '&order=size&by=DESC', target: '_blank', rel: 'noopener noreferrer'}); rblink.textContent = 'Rarbg';
+  var sbdiv = createElement('div', {class: 'mini-article'}); var br1 = createElement('br'); var br2 = createElement('br');
   //sbdiv.appendChild(ftlink); sbdiv.appendChild(br1);
-  sbdiv.appendChild(cglink); sbdiv.appendChild(enbr);
-  sbdiv.appendChild(lblink);
+  sbdiv.appendChild(lblink); sbdiv.appendChild(br1);
+  sbdiv.appendChild(cglink); sbdiv.appendChild(br2);
+  sbdiv.appendChild(rblink);
   sidebar.insertBefore(sbdiv,sidebar.firstChild);
 	
 	// Döda zergnet-bajs
@@ -86,10 +88,13 @@ else if (url.includes('https://letterboxd.com/film/') == true) {
   var imdb = document.querySelector('.col-main > p.text-footer a.micro-button[data-track-action="IMDb"]').href.replace('http://www.imdb.com/title/', '').replace('/maindetails', '');
   var flag = document.querySelector('.col-main > p.text-footer span.report-link');
   //var ftlink = createElement('a', {href: 'http://www.filmtipset.se/' + imdb, class: 'micro-button', rel: 'noopener noreferrer'}); ftlink.textContent = "FT";
-  var cglink = createElement('a', {href: 'https://cinemageddon.net/browse.php?search=' + imdb, class: 'micro-button', rel: 'noopener noreferrer'}); cglink.textContent = "CG";
+  var cglink = createElement('a', { href: 'https://cinemageddon.net/browse.php?search=' + imdb, class: 'micro-button', rel: 'noopener noreferrer' }); cglink.textContent = "CG";
+  var rblink = createElement('a', { href: 'http://rarbg.to/torrents.php?search=' + imdb + '&order=size&by=DESC', class: 'micro-button', rel: 'noopener noreferrer' }); rblink.textContent = "RBG";
   var spejs = document.createTextNode(" "); var spsp = document.createElement('span');
   spsp.appendChild(spejs);
   //flag.insertAdjacentElement('beforebegin',ftlink);
   flag.insertAdjacentElement('beforebegin',spsp);
   flag.insertAdjacentElement('beforebegin',cglink);
+  flag.insertAdjacentElement('beforebegin',spsp);
+  flag.insertAdjacentElement('beforebegin',rblink);
 }
