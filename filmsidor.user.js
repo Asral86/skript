@@ -2,7 +2,7 @@
 // @name         Filmsidor
 // @description  Länka ihop Filmtipset, Imdb, Cinemageddon, Letterboxd
 // @author       Lars Andersson
-// @version      1.3
+// @version      1.4
 // @include      *://www.filmtipset.se/film/*
 // @include      *://*.imdb.com/title/*
 // @include      *://cinemageddon.net/details.php?*
@@ -41,19 +41,37 @@ if (url.includes('www.filmtipset.se') == true) {
 }
 
 else if (url.includes('imdb.com') == true) {
-  var sidebar = document.getElementById('sidebar');
-  var imdbid = document.querySelector('meta[property="pageId"]').getAttribute("content");
-  //var ftlink = createElement('a', {href: 'http://www.filmtipset.se/' + imdbid, target: '_blank', rel: 'noopener noreferrer'}); ftlink.textContent = 'Filmtipset';
-  var cglink = createElement('a', {href: 'https://cinemageddon.net/browse.php?search=' + imdbid, target: '_blank', rel: 'noopener noreferrer'}); cglink.textContent = 'Cinemageddon';
-  var lblink = createElement('a', {href: 'https://letterboxd.com/imdb/' + imdbid, target: '_blank', rel: 'noopener noreferrer'}); lblink.textContent = 'Letterboxd';
-  var rblink = createElement('a', {href: 'http://rarbg.to/torrents.php?search=' + imdbid + '&order=size&by=DESC', target: '_blank', rel: 'noopener noreferrer'}); rblink.textContent = 'Rarbg';
-  var sbdiv = createElement('div', {class: 'mini-article'}); var br1 = createElement('br'); var br2 = createElement('br');
-  //sbdiv.appendChild(ftlink); sbdiv.appendChild(br1);
-  sbdiv.appendChild(lblink); sbdiv.appendChild(br1);
-  sbdiv.appendChild(cglink); sbdiv.appendChild(br2);
-  sbdiv.appendChild(rblink);
-  sidebar.insertBefore(sbdiv,sidebar.firstChild);
-	
+	if (document.getElementById('styleguide-v2')) { var imdbid = document.querySelector('meta[property="pageId"]').getAttribute("content"); }  // old
+	if (document.getElementById('__next')) { var imdbid = document.querySelector('meta[property="imdb:pageConst"]').getAttribute("content"); } // new
+
+	var cglink = createElement('a', {href: 'https://cinemageddon.net/browse.php?search=' + imdbid, target: '_blank', rel: 'noopener noreferrer'}); cglink.textContent = 'Cinemageddon';
+	var lblink = createElement('a', {href: 'https://letterboxd.com/imdb/' + imdbid, target: '_blank', rel: 'noopener noreferrer'}); lblink.textContent = 'Letterboxd';
+	var rblink = createElement('a', {href: 'http://rarbg.to/torrents.php?search=' + imdbid + '&order=size&by=DESC', target: '_blank', rel: 'noopener noreferrer'}); rblink.textContent = 'Rarbg';
+
+	if (document.getElementById('styleguide-v2')) { // gamla stilen, använd sidebar
+		var sidebar = document.getElementById('sidebar'); console.log('bläh');
+		var sbdiv = createElement('div', {class: 'mini-article', style: 'margin-bottom: 1em;'}); var br1 = createElement('br'); var br2 = createElement('br');
+		sbdiv.appendChild(lblink); sbdiv.appendChild(br1);
+		sbdiv.appendChild(cglink); sbdiv.appendChild(br2);
+		sbdiv.appendChild(rblink);
+		sidebar.insertBefore(sbdiv,sidebar.firstChild);
+	}
+	else if (document.getElementById('__next')) { // nya stilen
+		var head = document.querySelector('ul.sc-8c396aa2-0.kqWovI');
+		var lilb = document.createElement('li'); lilb.classList.add('ipc-inline-list__item');
+		var licg = document.createElement('li'); licg.classList.add('ipc-inline-list__item');
+		var lirb = document.createElement('li'); lirb.classList.add('ipc-inline-list__item');
+		lblink.classList.add('ipc-link', 'ipc-link--baseAlt'); lilb.appendChild(lblink);
+		cglink.classList.add('ipc-link', 'ipc-link--baseAlt'); licg.appendChild(cglink);
+		rblink.classList.add('ipc-link', 'ipc-link--baseAlt'); lirb.appendChild(rblink);
+		head.appendChild(lilb);
+		head.appendChild(licg);
+		head.appendChild(lirb);
+	}
+
+	//var ftlink = createElement('a', {href: 'http://www.filmtipset.se/' + imdbid, target: '_blank', rel: 'noopener noreferrer'}); ftlink.textContent = 'Filmtipset';
+	//sbdiv.appendChild(ftlink); sbdiv.appendChild(br1);
+
 	// Döda zergnet-bajs
 	var bajs = document.querySelector('#sidebar > .mini-article > .ab_widget > .ab_zergnet');
 	bajs.parentNode.parentNode.remove();
