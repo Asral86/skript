@@ -2,11 +2,11 @@
 // @name         Filmsidor
 // @description  Länka ihop Filmtipset, Imdb, Cinemageddon, Letterboxd
 // @author       Lars Andersson
-// @version      1.5
-// @include      *://www.filmtipset.se/film/*
-// @include      *://*.imdb.com/title/*
-// @include      *://cinemageddon.net/details.php?*
-// @include      *://letterboxd.com/*
+// @version      1.5.1
+// @match        *://www.filmtipset.se/film/*
+// @match        *://*.imdb.com/title/*
+// @match        *://cinemageddon.net/details.php?*
+// @match        *://letterboxd.com/*
 // @grant        none
 // ==/UserScript==
 
@@ -105,7 +105,7 @@ else if (url.includes('cinemageddon.net') == true) {
 else if (url.includes('https://letterboxd.com/film/') == true) {
 	var imdb = document.querySelector('.col-main > p.text-footer a.micro-button[data-track-action="IMDb"]').href.replace('http://www.imdb.com/title/', '').replace('/maindetails', '');
 	var namn = document.querySelector('#featured-film-header > h1').innerHTML.replace('&nbsp;','+');
-	var flag = document.querySelector('.col-main > p.text-footer span.report-link');
+	var flag = document.querySelector('.col-main > p.text-footer span.block-flag-wrapper');
 	var ftln = createElement('a', {href: 'http://www.filmtipset.se/hitta?q=' + namn, class: 'micro-button', rel: 'noopener noreferrer'}); ftln.textContent = "FT";
 	var cgln = createElement('a', { href: 'https://cinemageddon.net/browse.php?search=' + imdb, class: 'micro-button', rel: 'noopener noreferrer' }); cgln.textContent = "CG";
 	var rbln = createElement('a', { href: 'http://rarbg.to/torrents.php?search=' + imdb + '&order=size&by=DESC', class: 'micro-button', rel: 'noopener noreferrer' }); rbln.textContent = "RB";
