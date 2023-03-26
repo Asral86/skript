@@ -2,7 +2,7 @@
 // @name         SVT Play
 // @description  Lägg till slutdatum i titel
 // @author       Lars Andersson
-// @version      1.0
+// @version      1.0.1
 // @include      https://www.svtplay.se/video/*
 // @grant        none
 // @run-at       document-idle
@@ -12,14 +12,22 @@ var strng = document.querySelector('#mer-information .cnluJd > .farjXo:nth-child
 var dagar = new Array('Mån','Tis','Ons','Tor','Fre','Lör','Sön');
 
 function fixit() {
-if (strng.includes('Ikväll') === false && strng.includes('Imorgon') === false) {
-	for (var i=0; i < dagar.length; i++) {
-		if (strng.includes(dagar[i]) === true) { strng = strng.replace(dagar[i],'')+' 2023'; }
+	if (strng.includes('Ikväll') === true) {
+		var datum = new Date();
 	}
-	var datum = new Date(strng);
+	else if (strng.includes('Imorgon') === true) {
+		var datum = new Date();
+		datum.setDate(datum.getDate() + 1);
+	}
+	else {
+		strng = strng.replace('maj','may').replace('okt','oct');
+		for (var i=0; i < dagar.length; i++) {
+			if (strng.includes(dagar[i]) === true) { strng = strng.replace(dagar[i],'') +' 2023'; /* console.log(strng); */ }
+		}
+		var datum = new Date(strng); // console.log(datum);
+	}
 	var titel = new Intl.DateTimeFormat('sv-SE', { year: '2-digit', month: '2-digit', day: '2-digit' }).format(datum);
 	document.title = titel + ' ' + document.title; // console.log(document.title);
-}
 }
 
 window.setTimeout(fixit,1000);
