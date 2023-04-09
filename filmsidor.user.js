@@ -2,7 +2,7 @@
 // @name         Filmsidor
 // @description  Länka ihop Filmtipset, Imdb, Cinemageddon, Letterboxd
 // @author       Lars Andersson
-// @version      1.5.3
+// @version      1.5.4
 // @match        *://www.filmtipset.se/film/*
 // @match        *://*.imdb.com/title/*
 // @match        *://cinemageddon.net/details.php?*
@@ -57,7 +57,7 @@ else if (url.includes('imdb.com') == true) {
 		sidebar.insertBefore(sbdiv,sidebar.firstChild);
 	}
 	else if (document.getElementById('__next')) { // nya stilen
-		var head = document.querySelector('h1[data-testid="hero__pageTitle"] + ul.ipc-inline-list--show-dividers');
+		var head = document.querySelector('h1[data-testid="hero__pageTitle"] ~ ul.ipc-inline-list--show-dividers');
 		var lilb = document.createElement('li'); lilb.classList.add('ipc-inline-list__item');
 		var licg = document.createElement('li'); licg.classList.add('ipc-inline-list__item');
 		var lirb = document.createElement('li'); lirb.classList.add('ipc-inline-list__item');
