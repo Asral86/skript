@@ -2,13 +2,13 @@
 // @name         SVT Play
 // @description  Lägg till slutdatum i titel
 // @author       Lars Andersson
-// @version      1.0.2
+// @version      1.0.3
 // @include      https://www.svtplay.se/video/*
 // @grant        none
 // @run-at       document-idle
 // ==/UserScript==
 
-var strng = document.querySelector('.cnluJd > .farjXo:nth-child(2) .iLAZCI').textContent; // console.log(strng);
+var strng = document.querySelector('.cnluJd > .farjXo:nth-child(2) .eBYlWD').textContent; // console.log(strng);
 var dagar = new Array('Mån','Tis','Ons','Tor','Fre','Lör','Sön');
 
 function fixit() {
