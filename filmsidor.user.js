@@ -2,7 +2,7 @@
 // @name         Filmsidor
 // @description  Länka ihop Filmtipset, Imdb, Cinemageddon, Letterboxd
 // @author       Lars Andersson
-// @version      1.6
+// @version      1.6.1
 // @match        *://www.filmtipset.se/film/*
 // @match        *://*.imdb.com/title/*
 // @match        *://cinemageddon.net/details.php?*
@@ -71,7 +71,7 @@ else if (url.includes('imdb.com') == true) {
 }
 
 else if (url.includes('cinemageddon.net') == true) {
-  document.title = document.title.replace(' torrent details for ', ' ');
+  document.title = document.title.replace('cinemageddon // torrent details for "', ' ').slice(0,-1) + " // cinemageddon";
   if (document.querySelector('#altlist_row + tr + tr + tr td.rowhead').textContent == "IMDB") {
     var imdb = document.querySelectorAll('#altlist_row + tr + tr + tr a[href^="http://www.imdb.com/title/"]'); }
   else { var imdb = document.querySelectorAll('#altlist_row + tr + tr + tr + tr a[href^="http://www.imdb.com/title/"]'); }
@@ -90,8 +90,10 @@ else if (url.includes('cinemageddon.net') == true) {
   }
   // Auto-expandera bilder i beskrivningar
   var imgs = document.querySelectorAll('#torrent_details + table.frames img[title="Click to see original size"]');
-  for (var y = 0; y <= imgs.length; y++) {
-    if (imgs[y].hasAttribute('width')) imgs[y].removeAttribute('width');
+  if (imgs.length > 0) {
+		for (var y = 0; y <= imgs.length; y++) {
+			if (imgs[y].hasAttribute('width')) imgs[y].removeAttribute('width');
+		}
   }
 }
 
