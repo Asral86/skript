@@ -2,7 +2,7 @@
 // @name         Filmsidor
 // @description  Länka ihop Filmtipset, Imdb, Cinemageddon, Letterboxd
 // @author       Lars Andersson
-// @version      1.6.1
+// @version      1.6.9
 // @match        *://www.filmtipset.se/film/*
 // @match        *://*.imdb.com/title/*
 // @match        *://cinemageddon.net/details.php?*
@@ -46,27 +46,22 @@ else if (url.includes('imdb.com') == true) {
 
 	var cglink = createElement('a', {href: 'https://cinemageddon.net/browse.php?search=' + imdbid, target: '_blank', rel: 'noopener noreferrer'}); cglink.textContent = 'Cinemageddon';
 	var lblink = createElement('a', {href: 'https://letterboxd.com/imdb/' + imdbid, target: '_blank', rel: 'noopener noreferrer'}); lblink.textContent = 'Letterboxd';
-	// var rblink = createElement('a', {href: 'http://rarbg.to/torrents.php?search=' + imdbid + '&order=size&by=DESC', target: '_blank', rel: 'noopener noreferrer'}); rblink.textContent = 'Rarbg';
 
 	if (document.getElementById('styleguide-v2')) { // gamla stilen, använd sidebar
 		var sidebar = document.getElementById('sidebar');
 		var sbdiv = createElement('div', {class: 'mini-article', style: 'margin-bottom: 1em;'}); var br1 = createElement('br'); // var br2 = createElement('br');
 		sbdiv.appendChild(lblink); sbdiv.appendChild(br1);
 		sbdiv.appendChild(cglink); // sbdiv.appendChild(br2);
-		// sbdiv.appendChild(rblink);
 		sidebar.insertBefore(sbdiv,sidebar.firstChild);
 	}
 	else if (document.getElementById('__next')) { // nya stilen
 		var head = document.querySelector('h1[data-testid="hero__pageTitle"] ~ ul.ipc-inline-list--show-dividers');
 		var lilb = document.createElement('li'); lilb.classList.add('ipc-inline-list__item');
 		var licg = document.createElement('li'); licg.classList.add('ipc-inline-list__item');
-		// var lirb = document.createElement('li'); lirb.classList.add('ipc-inline-list__item');
 		lblink.classList.add('ipc-link', 'ipc-link--baseAlt'); lilb.appendChild(lblink);
 		cglink.classList.add('ipc-link', 'ipc-link--baseAlt'); licg.appendChild(cglink);
-		// rblink.classList.add('ipc-link', 'ipc-link--baseAlt'); lirb.appendChild(rblink);
 		head.appendChild(lilb);
 		head.appendChild(licg);
-		// head.appendChild(lirb);
 	}
 }
 
@@ -79,11 +74,8 @@ else if (url.includes('cinemageddon.net') == true) {
     for (var i=0; i<=imdb.length-1; i++) {
       if (imdb[i].classList.contains('lb') !== true) {
 				imdb[i].classList.add('lb');
-      	//var ft = createElement('a', {href: 'http://www.filmtipset.se/' + imdb[i].textContent, target: '_blank', rel: 'noopener noreferrer'});
       	var lb = createElement('a', {href: 'https://letterboxd.com/imdb/' + imdb[i].textContent, target: '_blank', rel: 'noopener noreferrer'});
-      	//ft.textContent = ' (ft)';
       	lb.textContent = ' (lb)';
-      	//imdb[i].parentNode.insertBefore(ft, imdb[i].nextSibling);
       	imdb[i].parentNode.insertBefore(lb, imdb[i].nextSibling);
       }
     }
@@ -99,12 +91,11 @@ else if (url.includes('cinemageddon.net') == true) {
 
 else if (url.includes('https://letterboxd.com/film/') == true) {
 	var imdb = document.querySelector('.col-main > p.text-footer a.micro-button[data-track-action="IMDb"]').href.replace('http://www.imdb.com/title/', '').replace('/maindetails', '');
-	var namn = document.querySelector('#featured-film-header > h1').innerHTML.replace('&nbsp;','+');
+	var titl = document.querySelector('#featured-film-header > h1').innerHTML.replace('&nbsp;','+');
+	var year = document.querySelector('#featured-film-header small.number a').textContent;
 	var flag = document.querySelector('.col-main > p.text-footer span.block-flag-wrapper');
-	var ftln = createElement('a', {href: 'http://www.filmtipset.se/hitta?q=' + namn, class: 'micro-button', rel: 'noopener noreferrer'}); ftln.textContent = "FT";
 	var cgln = createElement('a', { href: 'https://cinemageddon.net/browse.php?search=' + imdb, class: 'micro-button', rel: 'noopener noreferrer' }); cgln.textContent = "CG";
-	// var rbln = createElement('a', { href: 'http://rarbg.to/torrents.php?search=' + imdb + '&order=size&by=DESC', class: 'micro-button', rel: 'noopener noreferrer' }); rbln.textContent = "RB";
-	flag.insertAdjacentElement('beforebegin',ftln); flag.insertAdjacentText('beforebegin',' ');
-	flag.insertAdjacentElement('beforebegin',cgln); // flag.insertAdjacentText('beforebegin',' ');
-	// flag.insertAdjacentElement('beforebegin',rbln);
+	var exln = createElement('a', { href: 'https://ext.to/search/?q=' + titl + ' ' + year, class: 'micro-button', rel: 'noopener noreferrer' }); exln.textContent = "EX";
+	flag.insertAdjacentElement('beforebegin',cgln); flag.insertAdjacentText('beforebegin',' ');
+	flag.insertAdjacentElement('beforebegin',exln);
 }
