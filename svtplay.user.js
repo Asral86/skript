@@ -2,7 +2,7 @@
 // @name         SVT Play
 // @description  Lägg till slutdatum i titel
 // @author       Lars Andersson
-// @version      1.0.4
+// @version      1.0.5
 // @include      https://www.svtplay.se/video/*
 // @grant        none
 // @run-at       document-idle
@@ -11,7 +11,7 @@
 var dagar = new Array('Mån','Tis','Ons','Tor','Fre','Lör','Sön');
 
 function fixit() {
-	var strng = document.querySelector('.cnluJd > .farjXo:nth-child(2) .eBYlWD').textContent; // console.log(strng);
+	var strng = document.querySelector('.dFdpnc > .eZwnEI:nth-child(2) .duaZGS').textContent; // console.log(strng);
 	if (strng.includes('Ikväll') === true) {
 		var datum = new Date();
 	}
