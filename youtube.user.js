@@ -2,9 +2,8 @@
 // @name         Youtube
 // @description  Länka till video utan playlist
 // @author       Lars Andersson
-// @version      1.2
-// @include      https://www.youtube.com/playlist*
-// @include      https://www.youtube.com/watch?v=*&list=*
+// @version      1.3
+// @include      https://www.youtube.com/*
 // @grant        none
 // @run-at       document-idle
 // ==/UserScript==
@@ -31,7 +30,7 @@ if (url.includes("/playlist") == true) {
 	window.setTimeout(fixit, 1000);
 }
 
-else if (url.includes("/watch?v=") == true) {
+else if (url.includes("/watch?v=") && url.includes('&list=')) {
 	function killpl() {
 		var link = url.split('&list')[0];
 		var kill = createElement('a', { href: link, style: 'border-radius: 2px; padding: var(--yt-button-padding); \
@@ -45,3 +44,12 @@ else if (url.includes("/watch?v=") == true) {
 	}
 	window.setTimeout(killpl, 1500);
 }
+
+function rmshorts() {
+	var shorts = document.querySelectorAll('a[href^="/shorts/"]');
+	// console.log(shorts.length);
+	for (var i=0; i<shorts.length; i++) {
+		shorts[i].href = shorts[i].href.replace('/shorts/','/watch?v=');
+	}
+}
+window.setTimeout(rmshorts, 2000);
