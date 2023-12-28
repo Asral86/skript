@@ -2,7 +2,7 @@
 // @name         Youtube
 // @description  Länka till video utan playlist
 // @author       Lars Andersson
-// @version      1.3
+// @version      1.4
 // @include      https://www.youtube.com/*
 // @grant        none
 // @run-at       document-idle
@@ -27,7 +27,20 @@ if (url.includes("/playlist") == true) {
 			document.querySelectorAll('ytd-playlist-video-renderer > div#content #meta h3 + ytd-video-meta-block #byline-container > ytd-channel-name yt-formatted-string#text')[i].appendChild(thea);
 		}
 	}
+	function fnc_hide() {
+		var seen = document.querySelectorAll('ytd-playlist-video-renderer:has(ytd-thumbnail-overlay-resume-playback-renderer.ytd-thumbnail)');
+		for (var i = 0; i < seen.length; i++) { seen[i].style.display = "none"; }
+	}
+	function btn_hide() {
+		var plejs = document.querySelector('.metadata-action-bar + .play-menu');
+		var lnk_hide = document.createElement('a');
+		lnk_hide.classList.add('yt-spec-button-shape-next','yt-spec-button-shape-next--tonal','yt-spec-button-shape-next--overlay','yt-spec-button-shape-next--size-m');
+		lnk_hide.textContent = "Dölj sedda"; lnk_hide.style.marginBottom = "16px";
+		lnk_hide.addEventListener("click",fnc_hide);
+		plejs.insertAdjacentElement('afterEnd',lnk_hide);
+	}
 	window.setTimeout(fixit, 1000);
+	window.setTimeout(btn_hide, 1000);
 }
 
 else if (url.includes("/watch?v=") && url.includes('&list=')) {
