@@ -2,7 +2,7 @@
 // @name         SVT Play
 // @description  Lägg till slutdatum i titel
 // @author       Lars Andersson
-// @version      1.0.5
+// @version      1.0.6
 // @include      https://www.svtplay.se/video/*
 // @grant        none
 // @run-at       document-idle
@@ -22,7 +22,7 @@ function fixit() {
 	else {
 		strng = strng.replace('maj','may').replace('okt','oct');
 		for (var i=0; i < dagar.length; i++) {
-			if (strng.includes(dagar[i]) === true) { strng = strng.replace(dagar[i],'') +' 2023'; /* console.log(strng); */ }
+			if (strng.includes(dagar[i]) === true) { strng = strng.replace(dagar[i],'') +' 2024'; /* console.log(strng); */ }
 		}
 		var datum = new Date(strng); // console.log(datum);
 	}
