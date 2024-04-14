@@ -2,11 +2,23 @@
 // @name         SVT Play
 // @description  Lägg till slutdatum i titel
 // @author       Lars Andersson
-// @version      1.0.7
+// @version      1.1
 // @include      https://www.svtplay.se/video/*
 // @grant        none
 // @run-at       document-idle
 // ==/UserScript==
+
+function addimdb() {
+	var titel = document.querySelector('h1');
+	if (titel.previousElementSibling.textContent.includes('långfilm')) {
+		var imdb = document.createElement('a');
+		imdb.href = "https://www.imdb.com/find/?s=all&q=" + titel.textContent;
+		imdb.textContent = " // Imdb"; imdb.target = "_blank";
+		imdb.style = "text-decoration: none; color: rgb(235, 235, 230);";
+		titel.previousElementSibling.insertAdjacentElement('beforeend',imdb);
+	}
+}
+window.setTimeout(addimdb,2000);
 
 var dagar = new Array('Mån','Tis','Ons','Tor','Fre','Lör','Sön');
 
