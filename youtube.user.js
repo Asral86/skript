@@ -2,7 +2,7 @@
 // @name         Youtube
 // @description  Länka till video utan playlist
 // @author       Lars Andersson
-// @version      1.4
+// @version      1.5
 // @include      https://www.youtube.com/*
 // @grant        none
 // @run-at       document-idle
@@ -57,6 +57,14 @@ else if (url.includes("/watch?v=") && url.includes('&list=')) {
 	}
 	window.setTimeout(killpl, 1500);
 }
+
+function tbord(e) {
+	if (e.key == 'ö' && document.URL.includes('/shorts/')) {
+		let fix = document.URL.replace('/shorts/','/watch?v=');
+		window.location = fix;
+	}
+}
+document.addEventListener('keyup', tbord, false);
 
 function rmshorts() {
 	var shorts = document.querySelectorAll('a[href^="/shorts/"]');
