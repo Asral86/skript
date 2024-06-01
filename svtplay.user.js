@@ -2,7 +2,7 @@
 // @name         SVT Play
 // @description  Lägg till slutdatum i titel
 // @author       Lars Andersson
-// @version      1.2
+// @version      1.2.1
 // @match        https://www.svtplay.se/video/*
 // @match        https://www.svtplay.se/lista/lastchance_start/sista-chansen
 // @grant        none
@@ -29,7 +29,7 @@ if (document.URL.includes('/lastchance_start/sista-chansen')) {
 else {
 	function addimdb() {
 		var titel = document.querySelector('h1');
-		if (titel.previousElementSibling.textContent.includes('långfilm')) {
+		if (titel.previousElementSibling.textContent.includes('film')) {
 			var imdb = document.createElement('a');
 			imdb.href = "https://www.imdb.com/find/?s=all&q=" + titel.textContent;
 			imdb.textContent = " // Imdb"; imdb.target = "_blank";
