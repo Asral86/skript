@@ -2,7 +2,7 @@
 // @name         SVT Play
 // @description  Lägg till slutdatum i titel
 // @author       Lars Andersson
-// @version      1.2.1
+// @version      1.2.2
 // @match        https://www.svtplay.se/video/*
 // @match        https://www.svtplay.se/lista/lastchance_start/sista-chansen
 // @grant        none
@@ -14,7 +14,7 @@ if (document.URL.includes('/lastchance_start/sista-chansen')) {
 		let s1 = document.createElement('div'); s1.classList.add('c7150154a', 'c23808003'); s1.id = '1d';
 		let s2 = document.createElement('div'); s2.classList.add('c7150154a', 'c23808003'); s2.id = '2d';
 		let s3 = document.createElement('div'); s3.classList.add('c7150154a', 'c23808003'); s3.id = '3d';
-		let daddy = document.querySelector('#play_main-content div[data-helix-type="list"] > section');
+		let daddy = document.querySelector('#play_main-content > section > div > section');
 		let cards = document.querySelectorAll('#play_main-content article[data-css-selector="contentItemCardArticle"]');
 		let texts = document.querySelectorAll('#play_main-content article[data-css-selector="contentItemCardArticle"] div[data-testid="play-badge"] > span:first-child');
 		daddy.appendChild(s1); daddy.appendChild(s2); daddy.appendChild(s3);
