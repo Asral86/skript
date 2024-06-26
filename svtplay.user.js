@@ -1,8 +1,8 @@
 ﻿// ==UserScript==
 // @name         SVT Play
-// @description  Lägg till slutdatum i titel
+// @description  Lägg till slutdatum i titel, organisera sista-listan
 // @author       Lars Andersson
-// @version      1.2.2
+// @version      1.2.3
 // @match        https://www.svtplay.se/video/*
 // @match        https://www.svtplay.se/lista/lastchance_start/sista-chansen
 // @grant        none
@@ -11,13 +11,14 @@
 
 if (document.URL.includes('/lastchance_start/sista-chansen')) {
 	function fixlist() {
-		let s1 = document.createElement('div'); s1.classList.add('c7150154a', 'c23808003'); s1.id = '1d';
-		let s2 = document.createElement('div'); s2.classList.add('c7150154a', 'c23808003'); s2.id = '2d';
-		let s3 = document.createElement('div'); s3.classList.add('c7150154a', 'c23808003'); s3.id = '3d';
 		let daddy = document.querySelector('#play_main-content > section > div > section');
+		let klass = daddy.firstChild.classList;
+		let s1div = document.createElement('div'); s1div.classList.add(klass[0], klass[1]); s1div.id = '1d';
+		let s2div = document.createElement('div'); s2div.classList.add(klass[0], klass[1]); s2div.id = '2d';
+		let s3div = document.createElement('div'); s3div.classList.add(klass[0], klass[1]); s3div.id = '3d';
 		let cards = document.querySelectorAll('#play_main-content article[data-css-selector="contentItemCardArticle"]');
 		let texts = document.querySelectorAll('#play_main-content article[data-css-selector="contentItemCardArticle"] div[data-testid="play-badge"] > span:first-child');
-		daddy.appendChild(s1); daddy.appendChild(s2); daddy.appendChild(s3);
+		daddy.appendChild(s1div); daddy.appendChild(s2div); daddy.appendChild(s3div);
 		for (var i = 0; i < cards.length; i++) {
 			if (texts[i].textContent.includes('1 dag kvar') == true) { document.getElementById('1d').appendChild(cards[i]); }
 			else if (texts[i].textContent.includes('2 dagar kvar') == true) { document.getElementById('2d').appendChild(cards[i]); }
