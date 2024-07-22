@@ -1,12 +1,13 @@
 ﻿// ==UserScript==
 // @name         Filmsidor
-// @description  Länka ihop Filmtipset, Imdb, Cinemageddon, Letterboxd
+// @description  Länka ihop filmsidor
 // @author       Lars Andersson
-// @version      1.7.1
+// @version      1.8
 // @match        *://www.filmtipset.se/film/*
 // @match        *://*.imdb.com/title/*
 // @match        *://cinemageddon.net/details.php?*
 // @match        *://letterboxd.com/*
+// @match        *://netflixguiden.se/film/*
 // @grant        none
 // ==/UserScript==
 
@@ -98,4 +99,17 @@ else if (url.includes('https://letterboxd.com/film/') == true) {
 	var exln = createElement('a', { href: 'https://ext.to/search/?q=' + titl + ' ' + year, class: 'micro-button', rel: 'noopener noreferrer' }); exln.textContent = "EX";
 	flag.insertAdjacentElement('beforebegin',cgln); flag.insertAdjacentText('beforebegin',' ');
 	flag.insertAdjacentElement('beforebegin',exln);
+}
+
+else if (url.includes('netflixguiden.se')) {
+	let imdb = document.querySelector('.imdb').href.split('/title/')[1]; console.log(imdb);
+	let pdiv = document.createElement('div'); pdiv.classList.add('imdb-rating');
+	let ltbx = document.createElement('a');
+	ltbx.href = 'https://letterboxd.com/imdb/' + imdb;
+	ltbx.classList.add('imdb');
+	ltbx.referrer = 'noopener noreferrer nofollow';
+	ltbx.textContent = 'Letterboxd';
+	ltbx.target = '_blank';
+	pdiv.appendChild(ltbx);
+	document.querySelector('div.ratings').appendChild(pdiv);
 }
