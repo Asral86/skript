@@ -2,7 +2,7 @@
 // @name         SVT Play
 // @description  Lägg till slutdatum i titel, organisera sista-listan
 // @author       Lars Andersson
-// @version      1.2.3
+// @version      1.3.1
 // @match        https://www.svtplay.se/video/*
 // @match        https://www.svtplay.se/lista/lastchance_start/sista-chansen
 // @grant        none
@@ -17,12 +17,12 @@ if (document.URL.includes('/lastchance_start/sista-chansen')) {
 		let s2div = document.createElement('div'); s2div.classList.add(klass[0], klass[1]); s2div.id = '2d';
 		let s3div = document.createElement('div'); s3div.classList.add(klass[0], klass[1]); s3div.id = '3d';
 		let cards = document.querySelectorAll('#play_main-content article[data-css-selector="contentItemCardArticle"]');
-		let texts = document.querySelectorAll('#play_main-content article[data-css-selector="contentItemCardArticle"] div[data-testid="play-badge"] > span:first-child');
 		daddy.appendChild(s1div); daddy.appendChild(s2div); daddy.appendChild(s3div);
 		for (var i = 0; i < cards.length; i++) {
-			if (texts[i].textContent.includes('1 dag kvar') == true) { document.getElementById('1d').appendChild(cards[i]); }
-			else if (texts[i].textContent.includes('2 dagar kvar') == true) { document.getElementById('2d').appendChild(cards[i]); }
-			else if (texts[i].textContent.includes('3 dagar kvar') == true) { document.getElementById('3d').appendChild(cards[i]); }
+			if (cards[i].querySelector('[data-testid="play-badge"]') === null) { document.getElementById('3d').appendChild(cards[i]); }
+			else if (cards[i].querySelector('[data-testid="play-badge"]').textContent.includes('1 dag kvar') == true)   { document.getElementById('1d').appendChild(cards[i]); }
+			else if (cards[i].querySelector('[data-testid="play-badge"]').textContent.includes('2 dagar kvar') == true) { document.getElementById('2d').appendChild(cards[i]); }
+			else if (cards[i].querySelector('[data-testid="play-badge"]').textContent.includes('3 dagar kvar') == true) { document.getElementById('3d').appendChild(cards[i]); }
 		}
 	}
 	window.setTimeout(fixlist,1500);
@@ -35,7 +35,12 @@ else {
 			imdb.href = "https://www.imdb.com/find/?s=all&q=" + titel.textContent;
 			imdb.textContent = " // Imdb"; imdb.target = "_blank";
 			imdb.style = "text-decoration: none; color: rgb(235, 235, 230); outline: none;";
-			titel.previousElementSibling.insertAdjacentElement('beforeend',imdb);
+			titel.previousElementSibling.appendChild(imdb);
+			var lbxd = document.createElement('a');
+			lbxd.href = "https://letterboxd.com/search/" + titel.textContent;
+			lbxd.textContent = ", Letterboxd"; lbxd.target = "_blank";
+			lbxd.style = "text-decoration: none; color: rgb(235, 235, 230); outline: none;";
+			titel.previousElementSibling.appendChild(lbxd);
 		}
 	}
 	window.setTimeout(addimdb,2000);
