@@ -2,7 +2,7 @@
 // @name         SVT Play
 // @description  Lägg till slutdatum i titel, organisera sista-listan
 // @author       Lars Andersson
-// @version      1.3.3
+// @version      1.3.4
 // @match        https://www.svtplay.se/video/*
 // @match        https://www.svtplay.se/lista/lastchance_start/sista-chansen
 // @grant        none
@@ -50,7 +50,7 @@ else {
 	let dagar = new Array('Mån','Tis','Ons','Tor','Fre','Lör','Sön');
 	
 	function fixit() {
-		let strng = document.querySelector('dl > div:nth-child(2) dd').textContent; // console.log(strng);
+		let strng = document.querySelector('dl > div:nth-child(3) dd').textContent; // console.log(strng);
 		if (strng.includes('Ikväll') === true) {
 			var datum = new Date();
 		}
