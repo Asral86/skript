@@ -2,7 +2,7 @@
 // @name         Arstechnica
 // @description  Snyggare tid i bylines
 // @author       Lars Andersson
-// @version      1.3
+// @version      1.3.1
 // @include      https://arstechnica.com/*
 // @grant        none
 // @run-at       document-idle
@@ -22,7 +22,7 @@ else if (document.URL.includes('/civis/')) {
 							'https://arstechnica.com/civis/forums/microsoft-os-software-colloquium.15/', 'Microsoft',
 							'https://arstechnica.com/civis/forums/macintoshian-achaia.19/', 'Mac ach',
 							'https://arstechnica.com/civis/forums/audio-visual-club.6/', 'A/V club',
-							'https://arstechnica.com/civis/forums/case-and-cooling-fetish.7/', 'Cases and cooling',
+							'https://arstechnica.com/civis/forums/case-and-cooling-fetish.7/', 'Cases & cooling',
 							'https://arstechnica.com/civis/forums/cpu-motherboard-technologia.8/', 'CPU & MB',
 							'https://arstechnica.com/civis/forums/other-hardware.11/', 'Other HW',
 							'https://arstechnica.com/civis/forums/gaming-extra-strength-caplets.22/', 'Gaming'
