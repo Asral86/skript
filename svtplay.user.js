@@ -2,7 +2,7 @@
 // @name         SVT Play
 // @description  Lägg till slutdatum i titel, organisera sista-listan
 // @author       Lars Andersson
-// @version      1.3.5
+// @version      1.3.6
 // @match        https://www.svtplay.se/video/*
 // @match        https://www.svtplay.se/lista/lastchance_start/sista-chansen
 // @grant        none
@@ -65,7 +65,10 @@ else {
 		else {
 			strng = strng.replace('maj','may').replace('okt','oct');
 			for (let i=0; i < dagar.length; i++) {
-				if (strng.includes(dagar[i]) === true) { strng = strng.replace(dagar[i],'') +' 2024'; /* console.log(strng); */ }
+				if (strng.includes(dagar[i]) === true) {
+					let year = new Date();
+					strng = strng.replace(dagar[i],'') + ' ' + year.getFullYear(); // console.log(strng);
+				}
 			}
 			var datum = new Date(strng); // console.log(datum);
 		}
