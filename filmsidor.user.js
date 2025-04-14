@@ -2,7 +2,7 @@
 // @name         Filmsidor
 // @description  Länka ihop filmsidor
 // @author       Lars Andersson
-// @version      1.8
+// @version      1.8.1
 // @match        *://www.filmtipset.se/film/*
 // @match        *://*.imdb.com/title/*
 // @match        *://cinemageddon.net/details.php?*
@@ -92,11 +92,11 @@ else if (url.includes('cinemageddon.net') == true) {
 
 else if (url.includes('https://letterboxd.com/film/') == true) {
 	var imdb = document.querySelector('.col-main > p.text-footer a.micro-button[data-track-action="IMDb"]').href.replace('http://www.imdb.com/title/', '').replace('/maindetails', '');
-	var titl = document.querySelector('h1.filmtitle').textContent.replace('&nbsp;','+');
+	var titl = document.querySelector('h1.primaryname').textContent.replace('&nbsp;','+');
 	var year = document.querySelector('div.releaseyear a').textContent;
 	var flag = document.querySelector('.col-main > p.text-footer span.block-flag-wrapper');
 	var cgln = createElement('a', { href: 'https://cinemageddon.net/browse.php?search=' + imdb, class: 'micro-button', rel: 'noopener noreferrer' }); cgln.textContent = "CG";
-	var exln = createElement('a', { href: 'https://ext.to/search/?q=' + titl + ' ' + year, class: 'micro-button', rel: 'noopener noreferrer' }); exln.textContent = "EX";
+	var exln = createElement('a', { href: 'https://search.extto.com/browse/?q=' + titl + ' ' + year, class: 'micro-button', rel: 'noopener noreferrer' }); exln.textContent = "EX";
 	flag.insertAdjacentElement('beforebegin',cgln); flag.insertAdjacentText('beforebegin',' ');
 	flag.insertAdjacentElement('beforebegin',exln);
 }
