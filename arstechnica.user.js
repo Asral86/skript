@@ -1,21 +1,14 @@
 ﻿// ==UserScript==
 // @name         Arstechnica
-// @description  Snyggare tid i bylines
+// @description  Ars stuff
 // @author       Lars Andersson
-// @version      1.3.1
+// @version      1.3.2
 // @include      https://arstechnica.com/*
 // @grant        none
 // @run-at       document-idle
 // ==/UserScript==
 
-if (document.body.classList.contains('single-post') === true) {
-	var datum = document.querySelector('.article-header .byline time'); //console.log(datum);
-	var datte = new Date(datum.getAttribute('datetime')); //console.log(datte);
-	var stajl = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
-	datum.setAttribute('title', datum.textContent);
-	datum.textContent = datte.toLocaleString('sv-SE', stajl); 
-}
-else if (document.URL.includes('/civis/')) {
+if (document.URL.includes('/civis/')) {
 	let list = document.querySelector('ul.p-sectionLinks-list');
 	let urls = ['https://arstechnica.com/civis/forums/battlefront.14/', 'Battlefront',
 							'https://arstechnica.com/civis/forums/linux-kung-fu.16/', 'Linux',
