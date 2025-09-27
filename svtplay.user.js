@@ -2,7 +2,7 @@
 // @name         SVT Play
 // @description  Lägg till slutdatum i titel, organisera sista-listan
 // @author       Lars Andersson
-// @version      1.3.8
+// @version      1.3.9
 // @match        https://www.svtplay.se/video/*
 // @match        https://www.svtplay.se/lista/lastchance_start/sista-chansen
 // @grant        none
@@ -39,17 +39,23 @@ if (document.URL.includes('/lastchance_start/sista-chansen')) {
 else {
 	function addimdb() {
 		let titel = document.querySelector('h1');
-		if (titel.previousElementSibling.textContent.includes('film')) {
+		let genre = document.querySelector('li[data-rt="details-page-genre-link"] a[href="/kategori/filmer"]');
+		if (genre !== null) {
+			let pppp = document.createElement('p');
+			let text = document.createTextNode(' // ');
 			let imdb = document.createElement('a');
-			imdb.href = "https://www.imdb.com/find/?s=all&q=" + titel.textContent;
-			imdb.textContent = " // Imdb"; imdb.target = "_blank";
-			imdb.style = "text-decoration: none; color: rgb(235, 235, 230); outline: none;";
-			titel.previousElementSibling.appendChild(imdb);
 			let lbxd = document.createElement('a');
+			pppp.style = "color: rgb(235, 235, 230); font-family: var(--svt-font-family); font-size: 1.3rem; margin-top: 1.3rem;";
+			imdb.href = "https://www.imdb.com/find/?s=all&q=" + titel.textContent;
+			imdb.textContent = " Imdb"; imdb.target = "_blank";
+			imdb.style = "text-decoration: underline; color: rgb(235, 235, 230); outline: none;";
 			lbxd.href = "https://letterboxd.com/search/" + titel.textContent;
-			lbxd.textContent = ", Letterboxd"; lbxd.target = "_blank";
-			lbxd.style = "text-decoration: none; color: rgb(235, 235, 230); outline: none;";
-			titel.previousElementSibling.appendChild(lbxd);
+			lbxd.textContent = "Letterboxd"; lbxd.target = "_blank";
+			lbxd.style = "text-decoration: underline; color: rgb(235, 235, 230); outline: none;";
+			pppp.appendChild(imdb);
+			pppp.appendChild(text);
+			pppp.appendChild(lbxd);
+			genre.parentElement.parentElement.insertAdjacentElement('afterEnd',pppp);
 		}
 	}
 	window.setTimeout(addimdb,2000);
@@ -62,7 +68,7 @@ else {
 		for (let i = 0; i < boxes.length; i++) {
 			if (boxes[i].textContent === "Kan ses till") { strng = boxes[i].nextSibling.textContent; break; }
 		}
-		if (strng.includes('Ikväll') === true || strng.includes('Inatt') === true) {
+		if (strng.includes('Ikväll') === true || strng.includes('Inatt') === true || strng.includes('Idag') === true) {
 			var datum = new Date();
 		}
 		else if (strng.includes('Imorgon') === true) {
