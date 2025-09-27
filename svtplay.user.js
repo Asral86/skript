@@ -2,7 +2,7 @@
 // @name         SVT Play
 // @description  Lägg till slutdatum i titel, organisera sista-listan
 // @author       Lars Andersson
-// @version      1.3.7
+// @version      1.3.8
 // @match        https://www.svtplay.se/video/*
 // @match        https://www.svtplay.se/lista/lastchance_start/sista-chansen
 // @grant        none
@@ -62,7 +62,7 @@ else {
 		for (let i = 0; i < boxes.length; i++) {
 			if (boxes[i].textContent === "Kan ses till") { strng = boxes[i].nextSibling.textContent; break; }
 		}
-		if (strng.includes('Ikväll') === true) {
+		if (strng.includes('Ikväll') === true || strng.includes('Inatt') === true) {
 			var datum = new Date();
 		}
 		else if (strng.includes('Imorgon') === true) {
