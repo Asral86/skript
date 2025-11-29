@@ -2,7 +2,7 @@
 // @name         Arstechnica
 // @description  Ars stuff
 // @author       Lars Andersson
-// @version      1.3.2
+// @version      1.3.3
 // @include      https://arstechnica.com/*
 // @grant        none
 // @run-at       document-idle
@@ -30,4 +30,5 @@ if (document.URL.includes('/civis/')) {
 		link.appendChild(span);
 		list.appendChild(enli);
 	}
+	document.querySelector('ul.p-sectionLinks-list li:has(a[href*="/civis/forums/-/mark-read?date="])').remove();
 }
