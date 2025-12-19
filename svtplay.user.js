@@ -2,7 +2,7 @@
 // @name         SVT Play
 // @description  Lägg till slutdatum i titel, organisera sista-listan
 // @author       Lars Andersson
-// @version      1.3.9
+// @version      1.3.10
 // @match        https://www.svtplay.se/video/*
 // @match        https://www.svtplay.se/lista/lastchance_start/sista-chansen
 // @grant        none
@@ -39,7 +39,7 @@ if (document.URL.includes('/lastchance_start/sista-chansen')) {
 else {
 	function addimdb() {
 		let titel = document.querySelector('h1');
-		let genre = document.querySelector('li[data-rt="details-page-genre-link"] a[href="/kategori/filmer"]');
+		let genre = document.querySelector('li[data-rt="details-page-genre-link"]:has(a[href="/kategori/filmer"],a[href="/kategori/kortfilmer"],a[href="/kategori/dokumentar"])');
 		if (genre !== null) {
 			let pppp = document.createElement('p');
 			let text = document.createTextNode(' // ');
@@ -55,7 +55,7 @@ else {
 			pppp.appendChild(imdb);
 			pppp.appendChild(text);
 			pppp.appendChild(lbxd);
-			genre.parentElement.parentElement.insertAdjacentElement('afterEnd',pppp);
+			genre.parentElement.insertAdjacentElement('afterEnd',pppp);
 		}
 	}
 	window.setTimeout(addimdb,2000);
