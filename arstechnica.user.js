@@ -2,13 +2,14 @@
 // @name         Arstechnica
 // @description  Ars stuff
 // @author       Lars Andersson
-// @version      1.3.3
+// @version      1.4
 // @include      https://arstechnica.com/*
 // @grant        none
 // @run-at       document-idle
 // ==/UserScript==
 
 if (document.URL.includes('/civis/')) {
+	document.querySelector('.p-nav-list').parentNode.removeChild(document.querySelector('.p-nav-list'))
 	let list = document.querySelector('ul.p-sectionLinks-list');
 	let urls = ['https://arstechnica.com/civis/forums/battlefront.14/', 'Battlefront',
 							'https://arstechnica.com/civis/forums/linux-kung-fu.16/', 'Linux',
