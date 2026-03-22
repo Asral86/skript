@@ -2,7 +2,7 @@
 // @name         SVT Play
 // @description  Lägg till slutdatum i titel, organisera sista-listan
 // @author       Lars Andersson
-// @version      1.3.10
+// @version      1.3.11
 // @match        https://www.svtplay.se/video/*
 // @match        https://www.svtplay.se/lista/lastchance_start/sista-chansen
 // @grant        none
@@ -90,7 +90,5 @@ else {
 		document.body.classList.add('datumtitel');
 	}
 	
-	window.setTimeout(fixit,1000);
 	window.setTimeout(fixit,3000);
-	window.setTimeout(fixit,5000);
 }
