@@ -2,7 +2,7 @@
 // @name         Filmsidor
 // @description  Länka ihop filmsidor
 // @author       Lars Andersson
-// @version      1.8.2
+// @version      1.9
 // @match        *://www.filmtipset.se/film/*
 // @match        *://*.imdb.com/title/*
 // @match        *://cinemageddon.net/details.php?*
@@ -99,6 +99,8 @@ else if (url.includes('https://letterboxd.com/film/') == true) {
 	var exln = createElement('a', { href: 'https://search.extto.com/browse/?q=' + titl + ' ' + year, class: 'micro-button', rel: 'noopener noreferrer' }); exln.textContent = "EX";
 	flag.insertAdjacentElement('beforebegin',cgln); flag.insertAdjacentText('beforebegin',' ');
 	flag.insertAdjacentElement('beforebegin',exln);
+	let acts = document.querySelectorAll('#tab-panel-cast .cast-list a.text-slug').length; console.log(acts);
+	document.querySelector('#tab-cast span.label').textContent = "Cast (" + acts + ")";
 }
 
 else if (url.includes('netflixguiden.se')) {
