@@ -2,7 +2,7 @@
 // @name         Filmsidor
 // @description  Länka ihop filmsidor
 // @author       Lars Andersson
-// @version      1.9
+// @version      1.9.1
 // @match        *://www.filmtipset.se/film/*
 // @match        *://*.imdb.com/title/*
 // @match        *://cinemageddon.net/details.php?*
@@ -69,8 +69,8 @@ else if (url.includes('imdb.com') == true) {
 else if (url.includes('cinemageddon.net') == true) {
 	document.title = document.title.replace('cinemageddon // torrent details for "', ' ').slice(0,-1) + " // cinemageddon";
 	if (document.querySelector('#altlist_row + tr + tr + tr td.rowhead').textContent == "IMDB") {
-		var imdb = document.querySelectorAll('#altlist_row + tr + tr + tr a[href^="http://www.imdb.com/title/"]'); }
-	else { var imdb = document.querySelectorAll('#altlist_row + tr + tr + tr + tr a[href^="http://www.imdb.com/title/"]'); }
+		var imdb = document.querySelectorAll('#altlist_row + tr + tr + tr a[href^="https://www.imdb.com/title/"]'); }
+	else { var imdb = document.querySelectorAll('#altlist_row + tr + tr + tr + tr a[href^="https://www.imdb.com/title/"]'); }
 	if ( imdb[0].textContent != "" ) {
 		for (var i=0; i<=imdb.length-1; i++) {
 			if (imdb[i].classList.contains('lb') !== true) {
