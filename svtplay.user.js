@@ -2,7 +2,7 @@
 // @name         SVT Play
 // @description  Lägg till slutdatum i titel, organisera sista-listan
 // @author       Lars Andersson
-// @version      1.3.12
+// @version      1.3.13
 // @match        https://www.svtplay.se/video/*
 // @match        https://www.svtplay.se/lista/lastchance_start/sista-chansen
 // @grant        none
@@ -46,7 +46,7 @@ else {
 			let imdb = document.createElement('a');
 			let lbxd = document.createElement('a');
 			pppp.style = "color: rgb(235, 235, 230); font-family: var(--svt-font-family); font-size: 1.3rem; margin-top: 1.3rem;";
-			imdb.href = "https://www.imdb.com/find/?s=all&q=" + titel.textContent;
+			imdb.href = 'https://www.imdb.com/find/?s=all&q=' + titel.textContent.replace('&','');
 			imdb.textContent = " Imdb"; imdb.target = "_blank";
 			imdb.style = "text-decoration: underline; color: rgb(235, 235, 230); outline: none;";
 			lbxd.href = "https://letterboxd.com/search/" + titel.textContent;
