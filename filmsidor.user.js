@@ -2,7 +2,7 @@
 // @name         Filmsidor
 // @description  Länka ihop filmsidor
 // @author       Lars Andersson
-// @version      1.9.2
+// @version      1.9.3
 // @match        *://www.filmtipset.se/film/*
 // @match        *://*.imdb.com/title/*
 // @match        *://cinemageddon.net/details.php?*
@@ -91,15 +91,17 @@ else if (url.includes('cinemageddon.net') == true) {
 }
 
 else if (url.includes('https://letterboxd.com/film/') == true) {
-	var imdb = document.querySelector('.col-main > p.text-footer a.micro-button[data-track-action="IMDb"]').href.replace('http://www.imdb.com/title/', '').replace('/maindetails', ''); // console.log("DEBUG: " + imdb);
-	var titl = document.querySelector('h1.primaryname').textContent.replace('&nbsp;','+'); // console.log("DEBUG: " + titl);
-	var year = document.querySelector('span.releasedate a').textContent; // console.log("DEBUG: " + year);
-	var flag = document.querySelector('.col-main > p.text-footer span.block-flag-wrapper'); // console.log(flag);
-	var cgln = createElement('a', { href: 'https://cinemageddon.net/browse.php?search=' + imdb, class: 'micro-button', rel: 'noopener noreferrer' }); cgln.textContent = "CG";
-	var exln = createElement('a', { href: 'https://search.extto.com/browse/?q=' + titl + ' ' + year, class: 'micro-button', rel: 'noopener noreferrer' }); exln.textContent = "EX";
-	flag.insertAdjacentElement('beforebegin',cgln); flag.insertAdjacentText('beforebegin',' ');
-	flag.insertAdjacentElement('beforebegin',exln);
-	let acts = document.querySelectorAll('#tab-panel-cast .cast-list a.text-slug:not(#has-cast-overflow)').length; console.log(acts);
+	if (document.querySelector('.col-main > p.text-footer a.micro-button[data-track-action="IMDb"]')) {
+		var imdb = document.querySelector('.col-main > p.text-footer a.micro-button[data-track-action="IMDb"]').href.replace('http://www.imdb.com/title/', '').replace('/maindetails', ''); // console.log("DEBUG: " + imdb);
+		var titl = document.querySelector('h1.primaryname').textContent.replace('&nbsp;','+'); // console.log("DEBUG: " + titl);
+		var year = document.querySelector('span.releasedate a').textContent; // console.log("DEBUG: " + year);
+		var flag = document.querySelector('.col-main > p.text-footer span.block-flag-wrapper'); // console.log(flag);
+		var cgln = createElement('a', { href: 'https://cinemageddon.net/browse.php?search=' + imdb, class: 'micro-button', rel: 'noopener noreferrer' }); cgln.textContent = "CG";
+		var exln = createElement('a', { href: 'https://search.extto.com/browse/?q=' + titl + ' ' + year, class: 'micro-button', rel: 'noopener noreferrer' }); exln.textContent = "EX";
+		flag.insertAdjacentElement('beforebegin',cgln); flag.insertAdjacentText('beforebegin',' ');
+		flag.insertAdjacentElement('beforebegin',exln);
+	}
+	let acts = document.querySelectorAll('#tab-panel-cast .cast-list a.text-slug:not(#has-cast-overflow)').length; // console.log(acts);
 	document.querySelector('#tab-cast span.label').textContent = "Cast (" + acts + ")";
 }
 
